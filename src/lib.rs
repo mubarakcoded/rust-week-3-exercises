@@ -16,9 +16,6 @@ pub enum BitcoinError {
 impl CompactSize {
     pub fn new(value: u64) -> Self {
         // TODO: Construct a CompactSize from a u64 value
-        if value > 0xFFFFFFFFFFFFFFFF {
-            panic!("Value exceeds maximum for CompactSize");
-        }
         CompactSize { value }
     }
 
@@ -81,7 +78,6 @@ impl CompactSize {
                 ]);
                 Ok((CompactSize::new(val), 9))
             }
-            _ => Err(BitcoinError::InvalidFormat),
         }
     }
 }
